@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NavbarContainer = styled.div`
-  background-color: #273054; 
+  background-color: #110e3d; 
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,6 +16,7 @@ export const LogoSection = styled.a`
   align-items: center;
   gap: 10px;
   text-decoration: none;
+  cursor: pointer;
 `;
 
 export const LogoImg = styled.img`
@@ -63,6 +64,7 @@ export const NavLink = styled.a`
   text-decoration: none;
   font-size: 1.1rem;
   transition: color 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     color: #ffffff;
