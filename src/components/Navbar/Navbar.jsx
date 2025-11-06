@@ -24,10 +24,10 @@ export const Navbar = () => {
             <LinksWrapper>
                 <NavLinks>
                     <NavItem><NavLink to="/">Home</NavLink></NavItem>
-                    <NavItem><NavLink href="/coins">Coins</NavLink></NavItem>
-                    <NavItem><NavLink href="/about">About Us</NavLink></NavItem>
+                    <NavItem><NavLink to="/coins">Coins</NavLink></NavItem>
+                    <NavItem><NavLink to="/about">About Us</NavLink></NavItem>
                     <NavItem>
-                        <NavLink href="/favorites">
+                        <NavLink to="/favorites">
                             <FaHeart style={{ color: "#e63946", fontSize: "1.3rem" }} />
                         </NavLink>
                     </NavItem>
