@@ -3,6 +3,7 @@ import { TrendingWrapper, Title, CoinTable, CoinRow, CoinCell, CoinInfo, CoinIco
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import { CalculatorModal } from "../CalculatorModal/CalculatorModal";
 import { FaHeart, FaRegHeart, FaCalculator } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const TrendingCoins = ({ coins }) => {
   const [favorites, setFavorites] = useState([]);
@@ -41,8 +42,13 @@ export const TrendingCoins = ({ coins }) => {
 
               <CoinCell>
                 <CoinInfo>
-                  <CoinIcon src={coin.iconUrl} alt={coin.name} />
-                  <CoinName>{coin.name}</CoinName>
+                  <Link
+                    to={`/coins/${coin.uuid}`}
+                    style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", color: "inherit" }}
+                  >
+                    <CoinIcon src={coin.iconUrl} alt={coin.name} />
+                    <CoinName>{coin.name}</CoinName>
+                  </Link>
                 </CoinInfo>
               </CoinCell>
 
