@@ -1,15 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllCoins } from "../../services/coinsService";
-import {CoinsWrapper,CoinTable,CoinRow, CoinCell,CoinInfo,CoinIcon,CoinName,FavoriteCell,CalculatorCell} from "./Coins.styles";
+import { CoinsWrapper, CoinTable, CoinRow, CoinCell, CoinInfo, CoinIcon, CoinName, FavoriteCell, CalculatorCell } from "./Coins.styles";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { FaHeart, FaCalculator } from "react-icons/fa";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Coins = () => {
     const [page, setPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
     const limit = 20;
+    const navigate = useNavigate();
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ["coins", page, searchTerm],
@@ -26,7 +28,6 @@ export const Coins = () => {
 
     return (
         <CoinsWrapper>
-
             <SearchBar
                 searchTerm={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -48,12 +49,17 @@ export const Coins = () => {
                     {coins.map((coin, index) => (
                         <CoinRow key={coin.uuid}>
                             <CoinCell>{index + 1 + (page - 1) * limit}</CoinCell>
-                            <CoinCell>
+
+                            <CoinCell
+                                onClick={() => navigate(`/coins/${coin.uuid}`)}
+                                style={{ cursor: "pointer" }}
+                            >
                                 <CoinInfo>
                                     <CoinIcon src={coin.iconUrl} alt={coin.name} />
                                     <CoinName>{coin.name}</CoinName>
                                 </CoinInfo>
                             </CoinCell>
+
                             <CoinCell>${parseFloat(coin.price).toFixed(2)}</CoinCell>
                             <CoinCell>${Number(coin.marketCap).toLocaleString()}</CoinCell>
                             <CoinCell>{parseFloat(coin.change).toFixed(2)}%</CoinCell>
