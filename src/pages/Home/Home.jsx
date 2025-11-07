@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react"
-import { HeroSection } from "../../components/HeroSection/HeroSection"
-import { SearchBar } from "../../components/SearchBar/SearchBar"
+import { useState } from "react";
+import { HeroSection } from "../../components/HeroSection/HeroSection";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { getTrendingCoins } from "../../services/coinsService";
 import { TrendingCoins } from "../../components/TrendingCoins/TrendingCoins";
+import { useQuery } from "@tanstack/react-query";
 
 export const Home = () => {
     const [searchTerm, setSearchTerm] = useState("");
-    const [coins, setCoins] = useState([]);
+    const { data, isLoading, error } = useQuery({
+        queryKey: ["trendingCoins"],
+        queryFn: getTrendingCoins,
+    });
 
-    useEffect(() => {
-        const fetchCoins = async () => {
-            const data = await getTrendingCoins();
-            setCoins(data);
-        }
-        fetchCoins();
-    }, []);
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error loading coins</p>;
 
-    const filteredCoins = coins.filter((coin) =>
+    const filteredCoins = data.filter((coin) =>
         coin.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -29,5 +28,5 @@ export const Home = () => {
             />
             <TrendingCoins coins={filteredCoins} />
         </>
-    )
-}
+    );
+};
