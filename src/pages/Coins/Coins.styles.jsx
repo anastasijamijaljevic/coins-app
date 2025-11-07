@@ -1,55 +1,60 @@
 import styled from "styled-components";
 
-export const TrendingWrapper = styled.div`
+export const CoinsWrapper = styled.div`
   margin: 40px auto;
   max-width: 1200px;
   padding: 0 20px;
   overflow-x: auto;
 `;
 
-export const Title = styled.h2`
-  font-size: 28px;
-  margin-bottom: 25px;
-  font-weight: 600;
-  color: black;
-  letter-spacing: 0.5px;
+export const SearchInput = styled.input`
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 `;
 
 export const CoinTable = styled.table`
   width: 100%;
   border-collapse: collapse;
-  color: black;
   font-size: 15px;
   font-weight: bold;
+  color: black;
 
   th {
     text-align: left;
     padding: 12px 8px;
     border-bottom: 1px solid #333;
     font-weight: 500;
-    color: black;
   }
 
   th:nth-child(1) { width: 70px; }
   th:nth-child(2) { width: 250px; }
-  th:nth-child(6) { width: 140px; text-align: center; }
+  th:nth-child(6),
+  th:nth-child(7) { width: 140px; text-align: center; }
 `;
 
 export const CoinRow = styled.tr`
   height: 55px;
   transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
 `;
 
 export const CoinCell = styled.td`
   padding: 14px 8px;
   border-bottom: 1px solid #2e2e2e;
-  font-size: 15px;
 
-  &:nth-child(1) { color: black; font-weight: 500; }
+  &:nth-child(1) { font-weight: 500; color: black; }
   &:nth-child(3),
   &:nth-child(4),
   &:nth-child(5) { font-family: "Roboto Mono", monospace; }
-  &:nth-child(6) { text-align: center; }
+  &:nth-child(6),
+  &:nth-child(7) { text-align: center; }
 `;
 
 export const CoinInfo = styled.div`
@@ -70,25 +75,10 @@ export const CoinName = styled.span`
   color: black;
 `;
 
-export const SparklineWrapper = styled.div`
-  width: 100px;
-  height: 40px;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-export const SparklineCell = styled(CoinCell)`
-  text-align: center;
-`;
-
 export const FavoriteCell = styled(CoinCell)`
-  text-align: center;
+  cursor: pointer;
 
   svg {
-    cursor: pointer;
     font-size: 20px;
     transition: 0.2s;
     color: ${(props) => (props.$isFavorite ? "red" : "#777")};
@@ -99,12 +89,10 @@ export const FavoriteCell = styled(CoinCell)`
   }
 `;
 
-
 export const CalculatorCell = styled(CoinCell)`
-  text-align: center;
+  cursor: pointer;
 
   svg {
-    cursor: pointer;
     font-size: 20px;
     color: #60a5fa;
     transition: 0.2s;
@@ -112,5 +100,26 @@ export const CalculatorCell = styled(CoinCell)`
 
   svg:hover {
     transform: scale(1.1);
+  }
+`;
+
+export const PaginationWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+`;
+
+export const PageButton = styled.button`
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  background-color: ${(props) => (props.active ? "#60a5fa" : "#fff")};
+  color: ${(props) => (props.active ? "#fff" : "#000")};
+  cursor: pointer;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #60a5fa;
+    color: #fff;
   }
 `;

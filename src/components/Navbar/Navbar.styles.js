@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink as RouterNavLink } from "react-router-dom";
 
 export const NavbarContainer = styled.div`
   background-color: #110e3d; 
@@ -59,7 +60,7 @@ export const NavLinks = styled.ul`
 
 export const NavItem = styled.li``;
 
-export const NavLink = styled.a`
+export const NavLink = styled(RouterNavLink)`
   color: #cfd8e3;
   text-decoration: none;
   font-size: 1.1rem;

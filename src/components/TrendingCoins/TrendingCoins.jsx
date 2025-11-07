@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TrendingWrapper, Title, CoinTable, CoinRow, CoinCell, CoinInfo, CoinIcon, CoinName, SparklineWrapper, SparklineCell, FavoriteCell, CalculatorCell} from "./TrendingCoins.styles";
+import { TrendingWrapper, Title, CoinTable, CoinRow, CoinCell, CoinInfo, CoinIcon, CoinName, SparklineWrapper, SparklineCell, FavoriteCell, CalculatorCell } from "./TrendingCoins.styles";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import { CalculatorModal } from "../CalculatorModal/CalculatorModal";
 import { FaHeart, FaRegHeart, FaCalculator } from "react-icons/fa";
@@ -60,7 +60,7 @@ export const TrendingCoins = ({ coins }) => {
                 </SparklineWrapper>
               </SparklineCell>
 
-              <FavoriteCell isFavorite={favorites.includes(coin.uuid)}>
+              <FavoriteCell $isFavorite={favorites.includes(coin.uuid)}>
                 {favorites.includes(coin.uuid) ? (
                   <FaHeart onClick={() => toggleFavorite(coin.uuid)} />
                 ) : (
