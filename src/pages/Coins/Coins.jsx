@@ -6,10 +6,14 @@ import { FaHeart, FaCalculator } from "react-icons/fa";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CalculatorModal } from "../../components/CalculatorModal/CalculatorModal";
 
 export const Coins = () => {
     const [page, setPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
+    const [selectedCoin, setSelectedCoin] = useState(null);
+    const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+
     const limit = 20;
     const navigate = useNavigate();
 
@@ -45,10 +49,13 @@ export const Coins = () => {
                         <th>Calculator</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {coins.map((coin, index) => (
                         <CoinRow key={coin.uuid}>
-                            <CoinCell>{index + 1 + (page - 1) * limit}</CoinCell>
+                            <CoinCell>
+                                {index + 1 + (page - 1) * limit}
+                            </CoinCell>
 
                             <CoinCell
                                 onClick={() => navigate(`/coins/${coin.uuid}`)}
@@ -60,13 +67,28 @@ export const Coins = () => {
                                 </CoinInfo>
                             </CoinCell>
 
-                            <CoinCell>${parseFloat(coin.price).toFixed(2)}</CoinCell>
-                            <CoinCell>${Number(coin.marketCap).toLocaleString()}</CoinCell>
-                            <CoinCell>{parseFloat(coin.change).toFixed(2)}%</CoinCell>
+                            <CoinCell>
+                                ${parseFloat(coin.price).toFixed(2)}
+                            </CoinCell>
+
+                            <CoinCell>
+                                ${Number(coin.marketCap).toLocaleString()}
+                            </CoinCell>
+
+                            <CoinCell>
+                                {parseFloat(coin.change).toFixed(2)}%
+                            </CoinCell>
+
                             <FavoriteCell $isFavorite={false}>
                                 <FaHeart />
                             </FavoriteCell>
-                            <CalculatorCell>
+
+                            <CalculatorCell
+                                onClick={() => {
+                                    setSelectedCoin(coin);
+                                    setIsCalculatorOpen(true);
+                                }}
+                            >
                                 <FaCalculator />
                             </CalculatorCell>
                         </CoinRow>
@@ -79,6 +101,14 @@ export const Coins = () => {
                 totalPages={totalPages}
                 onPageChange={(p) => setPage(p)}
             />
+
+           src/assets/images/logo-removebg-preview.png
+            {isCalculatorOpen && selectedCoin && (
+                <CalculatorModal
+                    coin={selectedCoin}
+                    onClose={() => setIsCalculatorOpen(false)}
+                />
+            )}
         </CoinsWrapper>
     );
 };

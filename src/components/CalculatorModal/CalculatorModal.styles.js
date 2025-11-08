@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Overlay = styled.div`
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,78 +11,79 @@ export const Overlay = styled.div`
 `;
 
 export const Modal = styled.div`
-  width: 400px;
+  width: 420px;
   max-width: 95%;
   background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
 `;
 
 export const Header = styled.div`
-  background: #2563eb;
-  padding: 16px 20px;
+  padding: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-export const Title = styled.h2`
-  font-size: 18px;
+export const CoinInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+`;
+
+export const CoinImage = styled.img`
+  width: 32px;
+  height: 32px;
+`;
+
+export const CoinName = styled.h2`
+  font-size: 20px;
   font-weight: 600;
-  color: white;
+  color: #111;
 `;
 
 export const CloseButton = styled.button`
   background: transparent;
   border: none;
   font-size: 22px;
-  color: white;
+  color: #444;
   cursor: pointer;
-
-  &:hover {
-    color: #f87171;
-  }
 `;
 
 export const Body = styled.div`
-  display: flex;
   padding: 20px;
-  gap: 20px;
+  background: white;
 `;
 
-export const InputWrapper = styled.div`
-  flex: 1;
+export const Row = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+  gap: 12px;
+  justify-content: center;
 `;
 
-export const Input = styled.input`
-  width: 100%;
-  padding: 12px 14px;
+export const SmallInput = styled.input`
+  width: 100px;
+  padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid #d1d5db;
-  background: #f9fafb;
-  color: #111827;
+  background: grey;
   font-size: 16px;
+  color: #111;
   outline: none;
-
-  &::placeholder {
-    color: #9ca3af;
-  }
-`;
-
-export const ResultWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f9fafb;
-  border-radius: 8px;
 `;
 
 export const Result = styled.div`
-  font-size: 20px;
-  font-weight: 600;
-  color: #2563eb;
+  font-size: 10px;
+  width: 100px;
+  color: black;
+  background-color: grey;
+  min-width: 90px;
+  text-align: right;
+  border: 1px solid #d1d5db;
+  padding: 10px 12px;
+  border-radius: 8px;
 `;
+
