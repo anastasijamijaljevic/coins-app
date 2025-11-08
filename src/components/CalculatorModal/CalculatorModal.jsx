@@ -1,31 +1,46 @@
 import React, { useState } from "react";
-import { Overlay, Modal, Header, Title, CloseButton, Body, InputWrapper, Input, ResultWrapper, Result } from "./CalculatorModal.styles";
+import {
+    Overlay, Modal, Header, CoinInfo, CoinImage, CoinName,
+    CloseButton, Body, Row, SmallInput, Result
+} from "./CalculatorModal.styles";
 
 export const CalculatorModal = ({ coin, onClose }) => {
     const [amount, setAmount] = useState("");
+
     const usdValue = amount ? (amount * Number(coin.price)).toLocaleString() : "0";
 
     return (
         <Overlay>
             <Modal>
                 <Header>
-                    <Title>{coin.name} Calculator</Title>
+                    <CoinInfo>
+                        <CoinImage src={coin.iconUrl} alt={coin.name} />
+                        <CoinName>{coin.name}</CoinName>
+                    </CoinInfo>
+
                     <CloseButton onClick={onClose}>×</CloseButton>
                 </Header>
 
                 <Body>
-                    <InputWrapper>
-                        <Input
+                    <Row>
+                        <SmallInput
                             type="number"
-                            placeholder="Enter coin amount..."
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
                         />
-                    </InputWrapper>
 
-                    <ResultWrapper>
+                        <span>×</span>
+
+                        <SmallInput
+                            type="text"
+                            value={coin.price}
+                            readOnly
+                        />
+
+                        <span>=</span>
+
                         <Result>${usdValue}</Result>
-                    </ResultWrapper>
+                    </Row>
                 </Body>
             </Modal>
         </Overlay>
