@@ -1,0 +1,37 @@
+.footer {
+  text-align: center;
+  padding: 30px 0;
+  background-color: #110e3d; 
+  color: #e6edf3; 
+  font-family: "Poppins", sans-serif;
+  border-top: 1px solid #30363d;
+}
+
+.footer-links {
+  display: inline-block;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 10px 25px;
+  margin-bottom: 20px;
+}
+
+.footer-links span {
+  margin: 0 15px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.footer-links span:hover {
+  color: #58a6ff; 
+}
+
+.footer-text {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: #8b949e;
+}
