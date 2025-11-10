@@ -9,9 +9,8 @@ import {
     NavItem,
     LinksWrapper
 } from './Navbar.styles'
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-
 
 export const Navbar = () => {
     return (
@@ -33,7 +32,10 @@ export const Navbar = () => {
                     </NavItem>
                 </NavLinks>
             </LinksWrapper>
+
+            <NavLink to="/profile" style={{ marginLeft: "auto" }}>
+                <FaUser style={{ color: "#cfd8e3", fontSize: "1.3rem", cursor: "pointer" }} />
+            </NavLink>
         </NavbarContainer>
     )
 }
-
