@@ -7,6 +7,7 @@ import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CalculatorModal } from "../../components/CalculatorModal/CalculatorModal";
+import { useFavorites } from "../../context/FavoritesContext";
 
 export const Coins = () => {
     const [page, setPage] = useState(1);
@@ -14,6 +15,7 @@ export const Coins = () => {
     const [selectedCoin, setSelectedCoin] = useState(null);
     const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
+    const { favorites, toggleFavorite } = useFavorites();
     const limit = 20;
     const navigate = useNavigate();
 
@@ -53,9 +55,7 @@ export const Coins = () => {
                 <tbody>
                     {coins.map((coin, index) => (
                         <CoinRow key={coin.uuid}>
-                            <CoinCell>
-                                {index + 1 + (page - 1) * limit}
-                            </CoinCell>
+                            <CoinCell>{index + 1 + (page - 1) * limit}</CoinCell>
 
                             <CoinCell
                                 onClick={() => navigate(`/coins/${coin.uuid}`)}
@@ -67,19 +67,14 @@ export const Coins = () => {
                                 </CoinInfo>
                             </CoinCell>
 
-                            <CoinCell>
-                                ${parseFloat(coin.price).toFixed(2)}
-                            </CoinCell>
+                            <CoinCell>${parseFloat(coin.price).toFixed(2)}</CoinCell>
+                            <CoinCell>${Number(coin.marketCap).toLocaleString()}</CoinCell>
+                            <CoinCell>{parseFloat(coin.change).toFixed(2)}%</CoinCell>
 
-                            <CoinCell>
-                                ${Number(coin.marketCap).toLocaleString()}
-                            </CoinCell>
-
-                            <CoinCell>
-                                {parseFloat(coin.change).toFixed(2)}%
-                            </CoinCell>
-
-                            <FavoriteCell $isFavorite={false}>
+                            <FavoriteCell
+                                $isFavorite={favorites.some(c => c.uuid === coin.uuid)}
+                                onClick={() => toggleFavorite(coin)}
+                            >
                                 <FaHeart />
                             </FavoriteCell>
 
@@ -102,7 +97,6 @@ export const Coins = () => {
                 onPageChange={(p) => setPage(p)}
             />
 
-           src/assets/images/logo-removebg-preview.png
             {isCalculatorOpen && selectedCoin && (
                 <CalculatorModal
                     coin={selectedCoin}

@@ -1,19 +1,27 @@
 import { useState } from "react";
-import { TrendingWrapper, Title, CoinTable, CoinRow, CoinCell, CoinInfo, CoinIcon, CoinName, SparklineWrapper, SparklineCell, FavoriteCell, CalculatorCell } from "./TrendingCoins.styles";
+import {
+  TrendingWrapper,
+  Title,
+  CoinTable,
+  CoinRow,
+  CoinCell,
+  CoinInfo,
+  CoinIcon,
+  CoinName,
+  SparklineWrapper,
+  SparklineCell,
+  FavoriteCell,
+  CalculatorCell,
+} from "./TrendingCoins.styles";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import { CalculatorModal } from "../CalculatorModal/CalculatorModal";
 import { FaHeart, FaRegHeart, FaCalculator } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useFavorites } from "../../context/FavoritesContext";
 
 export const TrendingCoins = ({ coins }) => {
-  const [favorites, setFavorites] = useState([]);
   const [selectedCoin, setSelectedCoin] = useState(null);
-
-  const toggleFavorite = (id) => {
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
-    );
-  };
+  const { favorites, toggleFavorite, isFavorite } = useFavorites(); // koristi context
 
   const top10Coins = coins.slice(0, 10);
 
@@ -44,7 +52,13 @@ export const TrendingCoins = ({ coins }) => {
                 <CoinInfo>
                   <Link
                     to={`/coins/${coin.uuid}`}
-                    style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", color: "inherit" }}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      textDecoration: "none",
+                      color: "inherit",
+                    }}
                   >
                     <CoinIcon src={coin.iconUrl} alt={coin.name} />
                     <CoinName>{coin.name}</CoinName>
@@ -66,11 +80,11 @@ export const TrendingCoins = ({ coins }) => {
                 </SparklineWrapper>
               </SparklineCell>
 
-              <FavoriteCell $isFavorite={favorites.includes(coin.uuid)}>
-                {favorites.includes(coin.uuid) ? (
-                  <FaHeart onClick={() => toggleFavorite(coin.uuid)} />
+              <FavoriteCell $isFavorite={isFavorite(coin.uuid)}>
+                {isFavorite(coin.uuid) ? (
+                  <FaHeart onClick={() => toggleFavorite(coin)} />
                 ) : (
-                  <FaRegHeart onClick={() => toggleFavorite(coin.uuid)} />
+                  <FaRegHeart onClick={() => toggleFavorite(coin)} />
                 )}
               </FavoriteCell>
 
