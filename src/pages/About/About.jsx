@@ -1,5 +1,7 @@
 import './About.styles.css';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
+import anaImg from "../../assets/images/anastasijaaa.jpg";
+import darisImg from "../../assets/images/daris.jpg"
 
 export default function About() {
   return (
@@ -7,14 +9,14 @@ export default function About() {
       <h1>About Us</h1>
       <div className="cards-container">
         <ProfileCard
-          image="https://via.placeholder.com/150"
+          image={anaImg}
           name="Anastasija Mijaljevic"
           location="Novi Pazar, Serbia"
-          description="Anastasijais a mathematician and web developer at NIT."
+          description="Anastasija is a mathematician and web developer at NIT."
           github="https://github.com/dzenan"
         />
         <ProfileCard
-          image="https://via.placeholder.com/150"
+          image={darisImg}
           name="Daris Bihorac"
           location="Novi Pazar, Serbia"
           description="Frontend developer passionate about building modern crypto web apps."
