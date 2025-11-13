@@ -17,6 +17,7 @@ export const getTrendingCoins = async () => {
         timePeriod: "24h",
       },
     });
+    console.log(response.data.data.coins);
     return response.data.data.coins;
   } catch (error) {
     console.error("Error fetching trending coins:", error);

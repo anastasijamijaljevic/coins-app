@@ -72,11 +72,10 @@ export const TrendingCoins = ({ coins }) => {
 
               <SparklineCell>
                 <SparklineWrapper>
-                  <Sparklines data={coin.sparkline}>
-                    <SparklinesLine
-                      style={{ strokeWidth: 2, fill: "none", color: "#60a5fa" }}
-                    />
+                  <Sparklines data={coin.sparkline.filter(v => v !== null)}>
+                    <SparklinesLine style={{ stroke: "#60a5fa", strokeWidth: 2, fill: "none" }} />
                   </Sparklines>
+
                 </SparklineWrapper>
               </SparklineCell>
 
