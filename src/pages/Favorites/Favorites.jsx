@@ -14,6 +14,9 @@ import {
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+// URL za praznu sliku (možeš promeniti po želji)
+const emptyImgUrl = "https://i.postimg.cc/rstHXmpL/No-data-pana.png";
+
 export const Favorites = () => {
   const { favorites, toggleFavorite } = useFavorites();
 
@@ -23,6 +26,13 @@ export const Favorites = () => {
         <EmptyMessage>
           You haven't added any coin to your favourite list, please add some.
         </EmptyMessage>
+        <div style={{ textAlign: "center", marginTop: "30px" }}>
+          <img
+            src={emptyImgUrl}
+            alt="No favorites"
+            style={{ width: "300px", maxWidth: "80%", marginBottom: "20px" }}
+          />
+        </div>
         <GoToCoinsButton as={Link} to="/coins">
           Go to coins
         </GoToCoinsButton>

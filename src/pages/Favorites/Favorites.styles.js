@@ -11,6 +11,10 @@ import {
 
 export const FavoritesWrapper = styled.div`
   padding: 20px 40px;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const CoinTable = BaseCoinTable;
@@ -21,25 +25,37 @@ export const CoinIcon = BaseCoinIcon;
 export const CoinName = BaseCoinName;
 export const FavoriteCell = BaseFavoriteCell;
 
-export const EmptyMessage = styled.p`
+export const EmptyWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
   text-align: center;
+`;
+
+export const EmptyImage = styled.img`
+  width: 300px;
+  max-width: 80%;
+  margin-bottom: 20px;
+`;
+
+export const EmptyMessage = styled.p`
   font-size: 1.2rem;
-  margin-top: 50px;
-  color: black; 
+  color: #333;
+  margin-bottom: 20px;
 `;
 
 export const GoToCoinsButton = styled.button`
-  display: block;
- margin: 30px auto 0;  
   padding: 10px 20px;
-  font-size: 1.5rem;
-  background: none;     
-  color: #000;           
-  border: none;          
+  font-size: 1rem;
+  background-color: #60a5fa;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  text-decoration: underline; 
 
   &:hover {
-    color: #e63946;      
+    background-color: #3b82f6;
   }
 `;
